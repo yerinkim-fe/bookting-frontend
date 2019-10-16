@@ -13,8 +13,8 @@ class Login extends Component {
   componentDidMount() {
     if (!firebase.apps.length) {
       const config = {
-        apiKey: process.env.FIREBASE_APIKEY,
-        authDomain: process.env.FIREBASE_AUTH_DOMAIN
+        apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+        authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN
       };
 
       firebase.initializeApp(config);
