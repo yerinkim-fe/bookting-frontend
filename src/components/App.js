@@ -15,8 +15,12 @@ class App extends Component {
       onMyBookDataLoad,
       onWishBookDataLoad,
       bookData,
-      bookIsEnd
+      bookIsEnd,
+      wishData,
+      wishIsEnd
     } = this.props;
+
+    console.log('comp', bookData);
 
     return (
       <BrowserRouter>
@@ -66,8 +70,8 @@ class App extends Component {
                 return <WishList
                   {...routeProps}
                   onWishBookDataLoad={onWishBookDataLoad}
-                  books={bookData}
-                  isEnd={bookIsEnd}
+                  wishes={wishData}
+                  isEnd={wishIsEnd}
                 />
               }}
             />

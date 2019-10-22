@@ -70,6 +70,8 @@ export default class BookList extends Component {
   render() {
     const { books } = this.props;
 
+    console.log(books)
+
     const bookList = books.map((item, index) => {
       const authors = item.authors.join(', ');
 
@@ -90,7 +92,7 @@ export default class BookList extends Component {
           </div>
 
           <div className='buttons'>
-            <button type='button' className='reg-button' onClick={() => this.handleWishBook(index)}>담기</button>
+            <button type='button' onClick={() => this.handleWishBook(index)}>담기</button>
           </div>
         </li>
       );

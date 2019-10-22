@@ -87,7 +87,7 @@ export default class MyBook extends Component {
               <button type='button' className='toggle-button-off' onClick={() => this.handleUpdateBook(index)}>대여가능</button>
             }
 
-            <button type='button' className='reg-button' onClick={() => this.handleRemoveBook(index)}>삭제</button>
+            <button type='button' onClick={() => this.handleRemoveBook(index)}>삭제</button>
           </div>
         </li>
       );

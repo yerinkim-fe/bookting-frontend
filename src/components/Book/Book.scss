@@ -76,16 +76,6 @@
       bottom: 20px;
     }
 
-    .reg-button {
-      // @extend %btn-shared;
-      padding: 5px 10px;
-      margin-left: 5px;
-      background: #1c77e4;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 12px;
-    }
-
     .toggle-button-on {
       // @extend %btn-shared;
       padding: 5px 10px;
@@ -104,6 +94,28 @@
       border-radius: 10px;
       color: #fff;
       font-size: 12px;
+    }
+  }
+}
+
+.wish-list {
+  li {
+    padding: 10px 0;
+
+    .owner {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+
+      &-name {
+
+      }
+
+      button {}
+    }
+
+    .book-list {
+      border-top: 1px solid #f0f0f0;
     }
   }
 }

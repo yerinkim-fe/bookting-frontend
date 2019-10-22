@@ -122,7 +122,7 @@ export default class MyBookNew extends Component {
             </span>
           </div>
           <div className='buttons'>
-            <button type='button' className='reg-button' onClick={() => this.handleAddBook(index)}>등록</button>
+            <button type='button' onClick={() => this.handleAddBook(index)}>등록</button>
           </div>
         </li>
       );

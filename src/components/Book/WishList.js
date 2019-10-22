@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import axios from 'axios';
-import Modal from '../Modal/Modal';
 import './Book.scss';
 
 export default class WishList extends Component {
@@ -64,56 +63,55 @@ export default class WishList extends Component {
   }
 
   render() {
-    const { books } = this.props;
+    const { wishes } = this.props;
+    console.log(wishes);
 
-    console.log(books);
+    const wishList = wishes.map((wishItem, index) => {
 
-    // const bookList = books.map((item, index) => {
-    //   const authors = item.authors.join(', ');
+      const bookList = wishItem.book.map((item, index) => {
+        const authors = item.authors.join(', ');
 
-    //   return (
-    //     <li key={index}>
-    //       <p className='owner'>{item.user.name}</p>
-    //       <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
-    //       <div className='info'>
-    //         <span className='title'>{item.title}</span>
-    //         <span className='authors'>
-    //           {authors}
-    //         </span>
-    //         <span className='publisher'>
-    //           {item.publisher}
-    //         </span>
-    //         <span className='pubdate'>
-    //           {item.pubdate}
-    //         </span>
-    //       </div>
+        return (
+          <li key={index}>
+            <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
+            <div className='info'>
+              <span className='title'>{item.title}</span>
+              <span className='authors'>
+                {authors}
+              </span>
+              <span className='publisher'>
+                {item.publisher}
+              </span>
+              <span className='pubdate'>
+                {item.pubdate}
+              </span>
+            </div>
+          </li>
+        );
+      });
 
-    //       {/* <div className='buttons'>
-    //         <button type='button' className='reg-button' onClick={() => this.handleWishBook(index)}>담기</button>
-    //       </div> */}
-    //     </li>
-    //   );
-    // });
+      return (
+        <li key={index}>
+          <div className='owner'>
+            <p className='owner-name'>{wishItem.owner.name}</p>
+            <button type='button' onClick={() => this.handleChat(wishItem.owner._id)}>채팅하기</button>
+          </div>
+          <ul className='book-list'>
+            {bookList}
+          </ul>
+        </li>
+      );
+    });
 
     return (
       <div className='container'>
-        {/* {
-          bookList.length > 0 ?
-          <ul className='book-list'>
-            {bookList}
+        {
+          wishList.length > 0 ?
+          <ul className='wish-list'>
+            {wishList}
           </ul> :
           <p className='no-data'>데이터가 없습니다.</p>
         }
-
-        {
-          this.state.isModalShow &&
-          <Modal>
-            <div className='wrap'>
-              <p className='message'>{this.state.message}</p>
-              <button type='button' onClick={this.handleHideModalClick}>확인</button>
-            </div>
-          </Modal>
-        } */}
       </div>
     );
   }
