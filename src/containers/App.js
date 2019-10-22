@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import App from '../components/App';
 import axios from 'axios';
-import { bookDataLoad, wishDataLoad, bookUpdateSuccess, bookRemoveSuccess } from '../actions';
+import { allBookDataLoad, bookDataLoad, wishDataLoad, bookUpdateSuccess, bookRemoveSuccess } from '../actions';
 
 const mapStateToProps = state => {
   return {
+    allBookData: state.allBook.data,
+    allBookIsEnd: state.allBook.isEnd,
     bookData: state.book.data,
     bookIsEnd: state.book.isEnd,
     wishData: state.wish.data,
@@ -14,21 +16,33 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    async onBookDataLoad(page = 0, isNew = false) {
-      const results = await axios.get(`/api/books?page=${page}`);
-      console.log('user', page, results);
-      dispatch(bookDataLoad(results.data.books, results.data.isEnd, isNew));
+    async onAllBookDataLoad(page = 0, isNew = false, query = '') {
+      const results = await axios.get(`/api/books?query=${query}&page=${page}`);
+
+      console.log(results);
+
+      // if (query !== prevQeury) {
+      //   books = results.data.books.items;
+      // } else {
+      //   books = this.state.books.concat(results.data.books.items);
+      // }
+      // this.setState({
+      //   books,
+      //   isEnd: results.data.books.isEnd
+      // });
+      // prevQeury = query;
+
+
+      dispatch(allBookDataLoad(results.data.books, results.data.isEnd, isNew));
     },
 
     async onMyBookDataLoad(page = 0, user_id, isNew = false) {
       const results = await axios.get(`/api/books/${user_id}?page=${page}`);
-      console.log('user', page, results);
       dispatch(bookDataLoad(results.data.books, results.data.isEnd, isNew));
     },
 
     async onWishBookDataLoad(page = 0, user_id, isNew = false) {
       const results = await axios.get(`/api/books/wish/${user_id}?page=${page}`);
-      console.log('wish', page, results);
       dispatch(wishDataLoad(results.data.books, results.data.isEnd, isNew));
     },
 

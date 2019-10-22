@@ -64,7 +64,6 @@ export default class WishList extends Component {
 
   render() {
     const { wishes } = this.props;
-    console.log(wishes);
 
     const wishList = wishes.map((wishItem, index) => {
 
@@ -93,7 +92,7 @@ export default class WishList extends Component {
       return (
         <li key={index}>
           <div className='owner'>
-            <p className='owner-name'>{wishItem.owner.name}</p>
+            <p className='owner-name'>{wishItem.owner.name} {wishItem.book.length}권</p>
             <button type='button' onClick={() => this.handleChat(wishItem.owner._id)}>채팅하기</button>
           </div>
           <ul className='book-list'>

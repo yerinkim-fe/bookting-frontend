@@ -12,15 +12,16 @@ import AuthComponent from './AuthComponent';
 class App extends Component {
   render() {
     const {
+      onAllBookDataLoad,
       onMyBookDataLoad,
       onWishBookDataLoad,
+      allBookData,
+      allBookIsEnd,
       bookData,
       bookIsEnd,
       wishData,
       wishIsEnd
     } = this.props;
-
-    console.log('comp', bookData);
 
     return (
       <BrowserRouter>
@@ -37,9 +38,9 @@ class App extends Component {
               render={routeProps => {
                 return <BookList
                   {...routeProps}
-                  onBookDataLoad={this.props.onBookDataLoad}
-                  books={bookData}
-                  isEnd={bookIsEnd}
+                  onAllBookDataLoad={this.props.onAllBookDataLoad}
+                  books={allBookData}
+                  isEnd={allBookIsEnd}
                 />
               }}
             />

@@ -2,6 +2,10 @@ import { combineReducers } from 'redux';
 import * as types from "../constants/actionTypes";
 
 const initialState = {
+  allBook: {
+    data: [],
+    isEnd: false
+  },
   book: {
     data: [],
     isEnd: false
@@ -11,6 +15,29 @@ const initialState = {
     isEnd: false
   }
 };
+
+export function allBookReducer(state = initialState.allBook, action) {
+  switch(action.type) {
+    case types.ALL_BOOK_DATA_LOAD:
+      let data;
+
+      if (action.isNew) {
+        data = action.data;
+      } else {
+        data = state.data.concat(action.data);
+      }
+
+      const books = {
+        data,
+        isEnd: action.isEnd
+      }
+
+      return books;
+
+    default:
+      return state;
+  }
+}
 
 export function bookReducer(state = initialState.book, action) {
   switch(action.type) {
@@ -55,7 +82,7 @@ export function bookReducer(state = initialState.book, action) {
   }
 }
 
-export function wishReducer(state = initialState.book, action) {
+export function wishReducer(state = initialState.wish, action) {
   switch(action.type) {
     case types.WISH_DATA_LOAD:
       let data;
@@ -79,6 +106,7 @@ export function wishReducer(state = initialState.book, action) {
 }
 
 export default combineReducers({
+  allBook: allBookReducer,
   book: bookReducer,
   wish: wishReducer
 });

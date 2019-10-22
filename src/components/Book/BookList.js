@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from '../Modal/Modal';
 import { getJwt } from '../../helpers';
 import './Book.scss';
+import iconSearch from '../../images/icon-search.png';
 
 export default class BookList extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class BookList extends Component {
     this.pageIndex = 0;
 
     this.state = {
+      value: '',
       message: '',
       isModalShow: false
     };
@@ -22,8 +24,8 @@ export default class BookList extends Component {
   }
 
   componentDidMount() {
-    const { onBookDataLoad } = this.props;
-    onBookDataLoad(0, true);
+    const { onAllBookDataLoad } = this.props;
+    onAllBookDataLoad(0, true);
 
     window.addEventListener('scroll', () => { this.onScroll() });
   }
@@ -31,6 +33,24 @@ export default class BookList extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', () => { this.onScroll() });
   }
+
+  handleValueChange = e => {
+    const { value } = e.target;
+    this.setState({
+      value
+    });
+  };
+
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.handleSearch();
+    }
+  }
+
+  handleSearch = async (page = 1) => {
+    const { onAllBookDataLoad } = this.props;
+    onAllBookDataLoad(0, true, this.state.value);
+  };
 
   handleWishBook = async index => {
     const { books } = this.props;
@@ -63,14 +83,12 @@ export default class BookList extends Component {
     let posScroll = doc.scrollHeight - doc.clientHeight - doc.scrollTop;
 
     if (!isEnd && posScroll < 200) {
-      this.props.onBookDataLoad(++this.pageIndex);
+      this.props.onAllBookDataLoad(++this.pageIndex);
     }
   }
 
   render() {
     const { books } = this.props;
-
-    console.log(books)
 
     const bookList = books.map((item, index) => {
       const authors = item.authors.join(', ');
@@ -79,6 +97,11 @@ export default class BookList extends Component {
         <li key={index}>
           <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
           <div className='info'>
+            {
+              item.status ?
+              <div className='status-on'>대여중</div> :
+              <div className='status-off'>대여가능</div>
+            }
             <span className='title'>{item.title}</span>
             <span className='authors'>
               {authors}
@@ -89,17 +112,28 @@ export default class BookList extends Component {
             <span className='pubdate'>
               {item.pubdate}
             </span>
+            <span className='owner'>
+              {item.owner.name}
+            </span>
           </div>
 
-          <div className='buttons'>
-            <button type='button' onClick={() => this.handleWishBook(index)}>담기</button>
-          </div>
+          {
+            !item.status &&
+            <div className='buttons'>
+              <button type='button' onClick={() => this.handleWishBook(index)}>담기</button>
+            </div>
+          }
         </li>
       );
     });
 
     return (
       <div className='container'>
+        <div className='search'>
+          <input type='text' onChange={this.handleValueChange} onKeyPress={this.handleKeyPress} placeholder='도서명, 저자명으로 검색하세요.' />
+          <button type='button' onClick={this.handleSearch}><img src={iconSearch} /></button>
+        </div>
+
         {
           bookList.length > 0 ?
           <ul className='book-list'>

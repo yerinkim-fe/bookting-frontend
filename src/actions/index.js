@@ -10,6 +10,13 @@ export const bookRemoveSuccess = (index) => ({
   index
 });
 
+export const allBookDataLoad = (data, isEnd, isNew) => ({
+  type: types.ALL_BOOK_DATA_LOAD,
+  data,
+  isEnd,
+  isNew
+});
+
 export const bookDataLoad = (data, isEnd, isNew) => ({
   type: types.BOOK_DATA_LOAD,
   data,

@@ -21,6 +21,10 @@
     position: absolute;
     right: 10px;
     top: 5px;
+    padding: 0;
+    margin-left: 0;
+    background: none;
+    border-radius: 0;
 
     img {
       width: 30px;
@@ -38,10 +42,29 @@
 
     img {
       width: 100px;
+      border: 1px solid #ddd;
     }
 
     .info {
       margin: 5px 0 0 20px;
+
+      .status-off {
+        display: inline-block;
+        border: 1px solid #1c77e4;
+        padding: 2px 4px;
+        color: #1c77e4;
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+      .status-on {
+        display: inline-block;
+        border: 1px solid #9aa0a7;
+        padding: 2px 4px;
+        color: #a3a3a3;
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+
       span {
         display: block;
 
@@ -66,6 +89,11 @@
         &.pubdate {
           color: #d8d8d8;
           margin-top: 10px;
+        }
+
+        &.owner {
+          color: #888;
+          margin-top: 15px;
         }
       }
     }
@@ -108,10 +136,11 @@
       padding-bottom: 10px;
 
       &-name {
-
+        font-size: 18px;
+        font-weight: bold;
+        color: #1c77e4;
       }
 
-      button {}
     }
 
     .book-list {
