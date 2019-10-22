@@ -30,3 +30,9 @@ export const wishDataLoad = (data, isEnd, isNew) => ({
   isEnd,
   isNew
 });
+
+export const wishRemoveSuccess = (wishIndex, bookIndex) => ({
+  type: types.WISH_REMOVE_SUCCESS,
+  wishIndex,
+  bookIndex
+});

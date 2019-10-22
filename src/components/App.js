@@ -71,6 +71,7 @@ class App extends Component {
                 return <WishList
                   {...routeProps}
                   onWishBookDataLoad={onWishBookDataLoad}
+                  onRemoveWish={this.props.onRemoveWish}
                   wishes={wishData}
                   isEnd={wishIsEnd}
                 />

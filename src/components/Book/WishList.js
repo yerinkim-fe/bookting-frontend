@@ -15,7 +15,7 @@ export default class WishList extends Component {
     };
 
     this.onScroll = debounce(this.onScroll, 200);
-    this.handleWishBook = this.handleWishBook.bind(this);
+    this.handleRemoveWish = this.handleRemoveWish.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +45,12 @@ export default class WishList extends Component {
     }
   };
 
+  handleRemoveWish = async (wishId, wishIndex, bookIndex) => {
+    const { match, onRemoveWish } = this.props;
+
+    onRemoveWish(wishId, wishIndex, bookIndex, match.params.user_id);
+  };
+
   handleHideModalClick() {
     this.setState({
       isModalShow: false
@@ -65,13 +71,15 @@ export default class WishList extends Component {
   render() {
     const { wishes } = this.props;
 
-    const wishList = wishes.map((wishItem, index) => {
+    console.log(wishes);
 
-      const bookList = wishItem.book.map((item, index) => {
+    const wishList = wishes.map((wishItem, wishIndex) => {
+
+      const bookList = wishItem.book.map((item, bookIndex) => {
         const authors = item.authors.join(', ');
 
         return (
-          <li key={index}>
+          <li key={bookIndex}>
             <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
             <div className='info'>
               <span className='title'>{item.title}</span>
@@ -85,14 +93,18 @@ export default class WishList extends Component {
                 {item.pubdate}
               </span>
             </div>
+
+            <div className='buttons'>
+              <button type='button' onClick={() => this.handleRemoveWish(wishItem.wishId, wishIndex, bookIndex)}>삭제</button>
+            </div>
           </li>
         );
       });
 
       return (
-        <li key={index}>
+        <li key={wishIndex}>
           <div className='owner'>
-            <p className='owner-name'>{wishItem.owner.name} {wishItem.book.length}권</p>
+            <p className='owner-name'>{wishItem.owner.name}</p>
             <button type='button' onClick={() => this.handleChat(wishItem.owner._id)}>채팅하기</button>
           </div>
           <ul className='book-list'>
