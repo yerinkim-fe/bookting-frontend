@@ -116,13 +116,17 @@ export default class WishList extends Component {
 
     return (
       <div className='container'>
-        {
-          wishList.length > 0 ?
-          <ul className='wish-list'>
-            {wishList}
-          </ul> :
-          <p className='no-data'>데이터가 없습니다.</p>
-        }
+        <h2>위시리스트</h2>
+
+        <div className='inner'>
+          {
+            wishList.length > 0 ?
+            <ul className='wish-list'>
+              {wishList}
+            </ul> :
+            <p className='no-data'>데이터가 없습니다.</p>
+          }
+        </div>
       </div>
     );
   }

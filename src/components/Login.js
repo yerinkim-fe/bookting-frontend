@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
+import './Login.scss';
+import logo from '../images/bookting-ci.png';
+import facebook from '../images/btn-login-facebook.png';
 
 class Login extends Component {
   constructor(props) {
@@ -65,14 +68,16 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginPage">
-        <div className="loginBtn">
+      <div className="login">
+        <img src={logo} />
+
+        <div className="login-button">
           <button
             className="facebook"
             type="submit"
             onClick={this.facebookLogin}
           >
-            facebook login
+            <img src={facebook} />
           </button>
         </div>
       </div>

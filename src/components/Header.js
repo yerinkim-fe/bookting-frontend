@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import logo from '../images/bookting-ci-s.png';
+import my from '../images/icon-my.png';
+import chat from '../images/icon-chat.png';
+import wish from '../images/icon-wish.png';
 
 class Header extends Component {
   constructor(props) {
@@ -38,12 +42,15 @@ class Header extends Component {
 
 
     return (
-      <div className='Header'>
-        <Link to={'/'}>Home</Link>
-        <Link to={`/books/${this.user_id}`}>내서재</Link>
-        <Link to={`/chat/${this.user_id}`}>Chat</Link>
-        <Link to={`/wish/${this.user_id}`}>Wish</Link>
-        <button onClick={() => this.handleSignOutClick()}>Sign out</button>
+      <div className='header'>
+        <h1><Link to={'/'}><img src={logo} /></Link></h1>
+
+        <div className='nav'>
+          <Link to={`/books/${this.user_id}`}><img src={my} /></Link>
+          <Link to={`/chat/${this.user_id}`}><img src={chat} /></Link>
+          <Link to={`/wish/${this.user_id}`}><img src={wish} /></Link>
+          <button onClick={() => this.handleSignOutClick()}><img src={wish} /></button>
+        </div>
       </div>
     )
   }

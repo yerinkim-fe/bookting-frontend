@@ -95,16 +95,19 @@ export default class MyBook extends Component {
 
     return (
       <div className='container'>
-        {
-          bookList.length > 0 ?
-          <ul className='book-list'>
-            {bookList}
-          </ul> :
-          <p className='no-data'>데이터가 없습니다.</p>
-        }
+        <h2>내서재</h2>
 
-        <Link to={`/books/new/${match.params.user_id}`}><img src={addBook} className='add-book-button' /></Link>
+        <div className='inner'>
+          {
+            bookList.length > 0 ?
+            <ul className='book-list'>
+              {bookList}
+            </ul> :
+            <p className='no-data'>데이터가 없습니다.</p>
+          }
 
+          <Link to={`/books/new/${match.params.user_id}`}><img src={addBook} className='add-book-button' /></Link>
+        </div>
       </div>
     );
   }

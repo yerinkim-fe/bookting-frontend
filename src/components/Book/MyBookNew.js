@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
 import axios from 'axios';
 import Modal from '../Modal/Modal';
@@ -130,31 +129,34 @@ export default class MyBookNew extends Component {
 
     return (
       <div className='container'>
-        <Link to={`/books/${match.params.user_id}`}>내서재목록</Link>
+        <h2>도서등록</h2>
 
-        <div className='search'>
-          <input type='text' onChange={this.handleValueChange} onKeyPress={this.handleKeyPress} placeholder='도서명, 저자명으로 검색하세요.' />
-          <button type='button' onClick={this.handleSearch}><img src={iconSearch} /></button>
+        <div className='inner'>
+
+          <div className='search'>
+            <input type='text' onChange={this.handleValueChange} onKeyPress={this.handleKeyPress} placeholder='도서명, 저자명으로 검색하세요.' />
+            <button type='button' onClick={this.handleSearch}><img src={iconSearch} /></button>
+          </div>
+
+          {
+            bookList.length > 0 ?
+            <ul className='book-list'>
+              {bookList}
+            </ul> :
+            <p className='no-data'>데이터가 없습니다.</p>
+          }
+
+          {
+            this.state.isModalShow &&
+            <Modal>
+              <div className='wrap'>
+                <p className='message'>{this.state.message}</p>
+                <button type='button' onClick={this.handleHideModalClick}>확인</button>
+              </div>
+            </Modal>
+          }
+
         </div>
-
-        {
-          bookList.length > 0 ?
-          <ul className='book-list'>
-            {bookList}
-          </ul> :
-          <p className='no-data'>데이터가 없습니다.</p>
-        }
-
-        {
-          this.state.isModalShow &&
-          <Modal>
-            <div className='wrap'>
-              <p className='message'>{this.state.message}</p>
-              <button type='button' onClick={this.handleHideModalClick}>확인</button>
-            </div>
-          </Modal>
-        }
-
       </div>
     );
   }
