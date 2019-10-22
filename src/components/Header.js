@@ -7,6 +7,7 @@ import logo from '../images/bookting-ci-s.png';
 import my from '../images/icon-my.png';
 import chat from '../images/icon-chat.png';
 import wish from '../images/icon-wish.png';
+import logout from '../images/icon-logout.png';
 
 class Header extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Header extends Component {
           <Link to={`/books/${this.user_id}`}><img src={my} /></Link>
           <Link to={`/chat/${this.user_id}`}><img src={chat} /></Link>
           <Link to={`/wish/${this.user_id}`}><img src={wish} /></Link>
-          <button onClick={() => this.handleSignOutClick()}><img src={wish} /></button>
+          <button onClick={() => this.handleSignOutClick()}><img src={logout} /></button>
         </div>
       </div>
     )

@@ -83,7 +83,7 @@ export default class BookList extends Component {
     let posScroll = doc.scrollHeight - doc.clientHeight - doc.scrollTop;
 
     if (!isEnd && posScroll < 200) {
-      this.props.onAllBookDataLoad(++this.pageIndex);
+      this.props.onAllBookDataLoad(++this.pageIndex, false, this.state.value);
     }
   }
 

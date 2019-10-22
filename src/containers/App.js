@@ -17,6 +17,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     async onAllBookDataLoad(page = 0, isNew = false, query = '') {
+      console.log(page, isNew, query);
       const results = await axios.get(`/api/books?query=${query}&page=${page}`);
       dispatch(allBookDataLoad(results.data.books, results.data.isEnd, isNew));
     },
