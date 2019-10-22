@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  .wrap {
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -100px;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+
+    .message {
+      text-align: center;
+      color: #111;
+    }
+
+    button {
+      padding: 5px 10px;
+      background: #1c77e4;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+}

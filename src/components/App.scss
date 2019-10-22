@@ -1,0 +1,38 @@
+body {
+  margin: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+%btn-shared {
+  padding: 5px 10px;
+  background: #1c77e4;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 100px 0;
+}

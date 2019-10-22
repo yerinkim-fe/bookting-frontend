@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import rootReducer from './reducers';
 import App from './containers/App';
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(logger)
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 ReactDOM.render(

@@ -27,15 +27,21 @@ class Login extends Component {
 
     firebase.auth().signInWithPopup(provider).then(async (result) => {
       if (result) {
-        const jwtTokenResponse = await axios.post('/auth/getToken', {
-          name: result.user.displayName,
-          email: result.user.email,
-          photoURL: result.user.photoURL
+        const { uid, displayName, email, photoURL } = result.user;
+        const jwtTokenResponse = await axios.post('/api/auth/getToken', {
+          uid,
+          name: displayName,
+          email,
+          photo_url: photoURL
         });
 
+        console.log(jwtTokenResponse.data);
+
+
         if (jwtTokenResponse.data) {
-          const token = jwtTokenResponse.data;
+          const { token, id } = jwtTokenResponse.data;
           localStorage.setItem('jwt', token);
+          localStorage.setItem('id', id);
           history.push('/');
         }
       }
@@ -50,6 +56,7 @@ class Login extends Component {
   facebookLogOut() {
     firebase.auth().signOut().then(() => {
       localStorage.removeItem('jwt');
+      localStorage.removeItem('id');
     }).catch((error) => {
       console.log(error);
     });

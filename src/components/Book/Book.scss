@@ -1,0 +1,116 @@
+.container {
+  position: relative;
+  margin: 0 20px;
+}
+
+.search {
+  position: relative;
+
+  input[type=text] {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
+    padding-right: 50px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #666;
+  }
+
+  button {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+
+    img {
+      width: 30px;
+    }
+  }
+}
+
+.book-list {
+  li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 20px 0;
+
+    img {
+      width: 100px;
+    }
+
+    .info {
+      margin: 5px 0 0 20px;
+      span {
+        display: block;
+
+        font-size: 14px;
+
+
+        &.title {
+          font-size: 16px;
+          color: #111;
+        }
+
+        &.authors {
+          color: #a3a3a3;
+          margin-top: 15px;
+        }
+
+        &.publisher {
+          color: #a3a3a3;
+          margin-top: 5px;
+        }
+
+        &.pubdate {
+          color: #d8d8d8;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .buttons {
+      position: absolute;
+      right: 10px;
+      bottom: 20px;
+    }
+
+    .reg-button {
+      // @extend %btn-shared;
+      padding: 5px 10px;
+      margin-left: 5px;
+      background: #1c77e4;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .toggle-button-on {
+      // @extend %btn-shared;
+      padding: 5px 10px;
+      margin-left: 5px;
+      background: #c7c7c7;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .toggle-button-off {
+      // @extend %btn-shared;
+      padding: 5px 10px;
+      margin-left: 5px;
+      background: #1c77e4;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+}
+
+.add-book-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 70px;
+}

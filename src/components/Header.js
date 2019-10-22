@@ -8,6 +8,8 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
+    this.user_id = localStorage.getItem('id');
+
     this.handleSignOutClick = this.handleSignOutClick.bind(this);
   }
 
@@ -25,20 +27,22 @@ class Header extends Component {
   handleSignOutClick() {
     firebase.auth().signOut().then(() => {
       localStorage.removeItem('jwt');
+      localStorage.removeItem('id');
       this.props.history.push('/login');
     }).catch((error) => {
       console.log(error);
     });
-
   }
 
   render() {
+
+
     return (
       <div className='Header'>
-        <Link to={`/`}>Home</Link>
-        <Link to={`/my`}>My</Link>
-        <Link to={`/chat`}>Chat</Link>
-        <Link to={`/wish`}>Wish</Link>
+        <Link to={'/'}>Home</Link>
+        <Link to={`/books/${this.user_id}`}>내서재</Link>
+        <Link to={`/chat/${this.user_id}`}>Chat</Link>
+        <Link to={`/wish/${this.user_id}`}>Wish</Link>
         <button onClick={() => this.handleSignOutClick()}>Sign out</button>
       </div>
     )

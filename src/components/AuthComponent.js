@@ -23,7 +23,7 @@ class AuthComponent extends Component {
       return;
     } else {
       try {
-        const res = await axios.get('/auth/getUser', {
+        const res = await axios.get('/api/auth/getUser', {
           headers: { 'authorization': getJwt() }
         });
 
@@ -31,7 +31,9 @@ class AuthComponent extends Component {
           user: res.data
         });
       } catch (err) {
+        console.log('error');
         localStorage.removeItem('jwt');
+        localStorage.removeItem('id');
         this.props.history.push('/login');
       }
     }
