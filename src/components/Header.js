@@ -48,7 +48,7 @@ class Header extends Component {
 
         <div className='nav'>
           <Link to={`/books/${this.user_id}`}><img src={my} /></Link>
-          <Link to={`/chat/${this.user_id}`}><img src={chat} /></Link>
+          <Link to={`/users/${this.user_id}/chats`}><img src={chat} /></Link>
           <Link to={`/wish/${this.user_id}`}><img src={wish} /></Link>
           <button onClick={() => this.handleSignOutClick()}><img src={logout} /></button>
         </div>

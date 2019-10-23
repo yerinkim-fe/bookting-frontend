@@ -16,6 +16,7 @@ export default class WishList extends Component {
 
     this.onScroll = debounce(this.onScroll, 200);
     this.handleRemoveWish = this.handleRemoveWish.bind(this);
+    this.handleChat = this.handleChat.bind(this);
   }
 
   componentDidMount() {
@@ -29,19 +30,15 @@ export default class WishList extends Component {
     window.removeEventListener('scroll', () => { this.onScroll() });
   }
 
-  handleWishBook = async index => {
-    const { books, match } = this.props;
+  handleChat = async partnerId => {
+    const { match, history } = this.props;
 
-    const selectedBook = books[index];
-    const result = await axios.post(`/api/books/wish/${match.params.user_id}`, {
-      selectedBook
+    const result = await axios.post(`/api/chats/${match.params.user_id}`, {
+      partner_id: partnerId
     });
 
     if (result.data.result === 'ok') {
-      this.setState({
-        message: result.data.message,
-        isModalShow: true
-      });
+      history.push(`/chats/${result.data.chatRoomId}`);
     }
   };
 
@@ -49,6 +46,8 @@ export default class WishList extends Component {
     const { match, onRemoveWish } = this.props;
 
     onRemoveWish(wishId, wishIndex, bookIndex, match.params.user_id);
+
+    //TODO: 아이템이 모두 없어지면 타이틀 삭제
   };
 
   handleHideModalClick() {
@@ -70,8 +69,6 @@ export default class WishList extends Component {
 
   render() {
     const { wishes } = this.props;
-
-    console.log(wishes);
 
     const wishList = wishes.map((wishItem, wishIndex) => {
 

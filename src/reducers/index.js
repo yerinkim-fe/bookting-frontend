@@ -13,6 +13,11 @@ const initialState = {
   wish: {
     data: [],
     isEnd: false
+  },
+  chatList: [],
+  chats: {
+    messages: [],
+    user: {}
   }
 };
 
@@ -119,8 +124,52 @@ export function wishReducer(state = initialState.wish, action) {
   }
 }
 
+export function chatListReducer(state = initialState.chatList, action) {
+  switch(action.type) {
+    case types.MY_CHAT_LIST_LOAD:
+      return action.list;
+
+    default:
+      return state;
+  }
+}
+
+export function chatReducer(state = initialState.chats, action) {
+  switch(action.type) {
+    case types.CHAT_DATA_LOAD:
+      const chats = {
+        messages: action.messages,
+        user: action.user
+      }
+
+      return chats;
+
+    case types.SEND_MESSAGE:
+      const messages = state.messages.slice();
+
+      const newMessage = {
+        author: action.author,
+        created_at: new Date(),
+        updated_at: new Date(),
+        message: action.message
+      }
+
+      messages.push(newMessage);
+
+      return {
+        ...state,
+        messages
+      };
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   allBook: allBookReducer,
   book: bookReducer,
-  wish: wishReducer
+  wish: wishReducer,
+  chatList: chatListReducer,
+  chats: chatReducer
 });

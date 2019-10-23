@@ -6,6 +6,8 @@ import BookList from './Book/BookList';
 import MyBookList from './Book/MyBookList';
 import MyBookNew from './Book/MyBookNew';
 import WishList from './Book/WishList';
+import ChatList from './Chat/ChatList';
+import ChatRoom from './Chat/ChatRoom';
 import './App.scss';
 import AuthComponent from './AuthComponent';
 
@@ -20,7 +22,13 @@ class App extends Component {
       bookData,
       bookIsEnd,
       wishData,
-      wishIsEnd
+      wishIsEnd,
+      onMyChatListLoad,
+      onChatDataLoad,
+      onSendMessage,
+      chatList,
+      messages,
+      user
     } = this.props;
 
     return (
@@ -77,8 +85,28 @@ class App extends Component {
                 />
               }}
             />
-            {/* <Route path='/my' component={BookRegister} /> */}
-
+            <Route
+              exact path='/users/:user_id/chats'
+              render={routeProps => {
+                return <ChatList
+                  {...routeProps}
+                  onMyChatListLoad={onMyChatListLoad}
+                  chatList={chatList}
+                />
+              }}
+            />
+            <Route
+              exact path='/chats/:chat_id'
+              render={routeProps => {
+                return <ChatRoom
+                  {...routeProps}
+                  onChatDataLoad={onChatDataLoad}
+                  onSendMessage={onSendMessage}
+                  messages={messages}
+                  user={user}
+                />
+              }}
+            />
           </AuthComponent>
         </Switch>
       </BrowserRouter>

@@ -36,3 +36,20 @@ export const wishRemoveSuccess = (wishIndex, bookIndex) => ({
   wishIndex,
   bookIndex
 });
+
+export const myChatListLoad = (list) => ({
+  type: types.MY_CHAT_LIST_LOAD,
+  list
+});
+
+export const chatDataLoad = (messages, user) => ({
+  type: types.CHAT_DATA_LOAD,
+  messages,
+  user
+});
+
+export const sendMessage = (message, author) => ({
+  type: types.SEND_MESSAGE,
+  message,
+  author
+});
