@@ -4,10 +4,17 @@
   justify-content: center;
   align-items: center;
 
+  p {
+    color: #322c64;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
   & > img {
     display: block;
     width: 250px;
-    margin: 50px 0 70px;
+    margin: 50px 0;
   }
 
   .login-button {

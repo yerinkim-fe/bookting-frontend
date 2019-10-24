@@ -71,6 +71,8 @@ class Login extends Component {
       <div className="login">
         <img src={logo} />
 
+        <p>읽고 싶은 책, <br/>사지 말고 함께 봐요</p>
+
         <div className="login-button">
           <button
             className="facebook"
