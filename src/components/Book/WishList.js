@@ -46,8 +46,6 @@ export default class WishList extends Component {
     const { match, onRemoveWish } = this.props;
 
     onRemoveWish(wishId, wishIndex, bookIndex, match.params.user_id);
-
-    //TODO: 아이템이 모두 없어지면 타이틀 삭제
   };
 
   handleHideModalClick() {
@@ -99,6 +97,7 @@ export default class WishList extends Component {
       });
 
       return (
+        bookList.length !== 0 ?
         <li key={wishIndex}>
           <div className='owner'>
             <p className='owner-name'>{wishItem.owner.name}</p>
@@ -108,6 +107,7 @@ export default class WishList extends Component {
             {bookList}
           </ul>
         </li>
+        : null
       );
     });
 
