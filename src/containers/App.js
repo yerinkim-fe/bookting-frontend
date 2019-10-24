@@ -75,7 +75,6 @@ const mapDispatchToProps = dispatch => {
     },
     async onMyChatListLoad(user_id) {
       const res = await axios.get(`/api/chats/${user_id}/list`);
-      console.log(res);
       dispatch(myChatListLoad(res.data.chats));
     },
     async onChatDataLoad(user_id, chat_id) {

@@ -55,7 +55,6 @@ export default class BookList extends Component {
   handleWishBook = async index => {
     const { books } = this.props;
 
-    // TODO: localStorage.getItem('id');
     const selectedBook = books[index].lib_id;
     const result = await axios.post(`/api/books/wish`, {
       selectedBook

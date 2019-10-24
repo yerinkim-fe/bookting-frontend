@@ -61,17 +61,17 @@
   text-decoration: none;
 }
 
-.msg-scroll {
-  height: 100%;
-}
-
 .msg-thread {
+  position: fixed;
+  top: 127px;
+  bottom: 50px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0;
-  padding: 10px 10px 50px 10px;
+  padding: 10px 10px 0 10px;
   background: #fff;
-  max-height:100%;
-  position:relative;
-  overflow-y:auto;
 
   li {
     position: relative;
@@ -196,5 +196,6 @@
     font-size: 14px;
     font-weight: bold;
     color: #fff;
+    margin-left: 0px;
   }
 }

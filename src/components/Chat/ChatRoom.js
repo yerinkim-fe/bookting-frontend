@@ -21,12 +21,15 @@ export default class ChatRoom extends Component {
 
 
   componentDidMount() {
+    this.scrollToBottom();
     const { onChatDataLoad, match } = this.props;
     onChatDataLoad(this.userId, match.params.chat_id);
   }
 
-  componentDidUpdate() {
-    this.scrollToBottom();
+  componentDidUpdate(prevProps) {
+    if (this.props.messages !== prevProps.messages) {
+      this.scrollToBottom();
+    }
   }
 
   handleValueChange = e => {
@@ -73,11 +76,9 @@ export default class ChatRoom extends Component {
       <div className='container'>
         <h2>채팅</h2>
 
-        <div className='msg-scroll'>
-          <ul className='msg-thread' ref={this.messagesEndRef}>
-            {msgThread}
-          </ul>
-        </div>
+        <ul className='msg-thread' ref={this.messagesEndRef}>
+          {msgThread}
+        </ul>
 
         <div className='input-message'>
           <input
