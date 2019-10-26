@@ -19,7 +19,6 @@ export default class BookList extends Component {
     };
 
     this.onScroll = debounce(this.onScroll, 200);
-    this.handleWishBook = this.handleWishBook.bind(this);
     this.handleHideModalClick = this.handleHideModalClick.bind(this);
   }
 
@@ -47,7 +46,7 @@ export default class BookList extends Component {
     }
   }
 
-  handleSearch = async (page = 1) => {
+  handleSearch = (page = 1) => {
     const { onAllBookDataLoad } = this.props;
     onAllBookDataLoad(0, true, this.state.value);
   };
@@ -120,7 +119,7 @@ export default class BookList extends Component {
           {
             !item.status &&
             <div className='buttons'>
-              <button type='button' onClick={() => this.handleWishBook(index)}>담기</button>
+              <button type='button' className='wish-button' onClick={() => this.handleWishBook(index)}>담기</button>
             </div>
           }
         </li>
@@ -132,7 +131,7 @@ export default class BookList extends Component {
         <div className='inner'>
           <div className='search'>
             <input type='text' onChange={this.handleValueChange} onKeyPress={this.handleKeyPress} placeholder='도서명, 저자명으로 검색하세요.' />
-            <button type='button' onClick={this.handleSearch}><img src={iconSearch} /></button>
+            <button type='button' className='search-button' onClick={this.handleSearch}><img src={iconSearch} /></button>
           </div>
 
           {

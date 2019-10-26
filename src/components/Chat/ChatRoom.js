@@ -45,7 +45,7 @@ export default class ChatRoom extends Component {
     }
   }
 
-  handleSend = async () => {
+  handleSend = () => {
     const { onSendMessage, match } = this.props;
 
     if (!this.state.value) return;

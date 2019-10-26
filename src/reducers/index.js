@@ -106,8 +106,6 @@ export function wishReducer(state = initialState.wish, action) {
       return books;
 
     case types.WISH_REMOVE_SUCCESS:
-      console.log('w', state);
-
       let stateCopied = state.data.slice();
 
       stateCopied[action.wishIndex].book.splice(action.bookIndex, 1);
@@ -152,7 +150,7 @@ export function chatReducer(state = initialState.chats, action) {
         created_at: new Date(),
         updated_at: new Date(),
         message: action.message
-      }
+      };
 
       messages.push(newMessage);
 
