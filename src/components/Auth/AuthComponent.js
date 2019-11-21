@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api';
 import { withRouter } from 'react-router-dom';
-import { getJwt } from '../helpers';
+import { getJwt } from '../../helpers';
 
 class AuthComponent extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class AuthComponent extends Component {
       return;
     } else {
       try {
-        const res = await axios.get('/api/auth/getUser', {
+        const res = await axiosInstance.get('/api/auth/getUser', {
           headers: { 'authorization': getJwt() }
         });
 

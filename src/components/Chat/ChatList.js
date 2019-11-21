@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Chat.scss';
-import getDateFormat from '../../utils';
+import { getDateFormatOfChat } from '../../utils';
 
 export default class ChatRoom extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class ChatRoom extends Component {
               <p className='username'>{item.messages[0].author.name}</p>
               <p className='last-msg'><span>{item.messages[0].message}</span></p>
             </div>
-            <span className='last-created-at'>{getDateFormat(item.messages[0].created_at)}</span>
+            <span className='last-created-at'>{getDateFormatOfChat(item.messages[0].created_at)}</span>
           </Link>
         </li>
       );

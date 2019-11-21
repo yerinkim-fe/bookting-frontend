@@ -5,7 +5,7 @@ const OPTS = {
   locale: koLocale
 };
 
-export default function getDateFormat(target) {
+export function getDateFormatOfChat(target) {
   const today = new Date();
   const date = new Date(target);
   const todayStr = ['sec', 'min', 'hour'];
@@ -23,4 +23,9 @@ export default function getDateFormat(target) {
       return format(date, "yy'년' MM'월' d'일", OPTS);
     }
   }
+}
+
+export function getDateFormat(target) {
+  const date = new Date(target);
+  return format(date, "yyyy.MM.dd", OPTS);
 }

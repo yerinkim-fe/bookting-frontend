@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
-import axios from 'axios';
+import axiosInstance from '../../api';
 import Modal from '../Modal/Modal';
+import { getDateFormat } from '../../utils';
 import './Book.scss';
 import iconSearch from '../../images/icon-search.png';
 
@@ -52,7 +53,7 @@ export default class MyBookNew extends Component {
     const { books } = this.state;
 
     const selectedBook = books[index];
-    const result = await axios.post(`/api/books/new/${match.params.user_id}`, {
+    const result = await axiosInstance.post(`/api/books/new/${match.params.user_id}`, {
       selectedBook
     });
 
@@ -73,7 +74,7 @@ export default class MyBookNew extends Component {
   handleSearch = async (page = 1) => {
     const query = this.state.value;
     let books;
-    const results = await axios.get(`/api/kakao/search?query=${query}&page=${page}`);
+    const results = await axiosInstance.get(`/api/kakao/search?query=${query}&page=${page}`);
 
     if (query !== this.prevQeury) {
       books = results.data.books.items;
@@ -117,7 +118,7 @@ export default class MyBookNew extends Component {
               {item.publisher}
             </span>
             <span className='pubdate'>
-              {item.pubdate}
+              {getDateFormat(item.pubdate)}
             </span>
           </div>
           <div className='buttons'>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
-import axios from 'axios';
+import axiosInstance from '../../api';
+import { getDateFormat } from '../../utils';
 import './Book.scss';
 
 export default class WishList extends Component {
@@ -33,7 +34,7 @@ export default class WishList extends Component {
   handleChat = async partnerId => {
     const { match, history } = this.props;
 
-    const result = await axios.post(`/api/chats/${match.params.user_id}`, {
+    const result = await axiosInstance.post(`/api/chats/${match.params.user_id}`, {
       partner_id: partnerId
     });
 
@@ -85,7 +86,7 @@ export default class WishList extends Component {
                 {item.publisher}
               </span>
               <span className='pubdate'>
-                {item.pubdate}
+                {getDateFormat(item.pubdate)}
               </span>
             </div>
 

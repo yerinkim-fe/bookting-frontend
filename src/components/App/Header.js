@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import logo from '../images/bookting-ci-s.png';
-import my from '../images/icon-my.png';
-import chat from '../images/icon-chat.png';
-import wish from '../images/icon-wish.png';
-import logout from '../images/icon-logout.png';
+import logo from '../../images/bookting-ci-s.png';
+import my from '../../images/icon-my.png';
+import chat from '../../images/icon-chat.png';
+import wish from '../../images/icon-wish.png';
+import logout from '../../images/icon-logout.png';
 
 class Header extends Component {
   constructor(props) {

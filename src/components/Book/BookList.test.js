@@ -37,7 +37,7 @@ describe('<BookList />', () => {
     expect(wrapper.contains(<span className="title">열두 달 저장음식</span>)).toBe(true);
     expect(wrapper.contains(<span className="authors">김영빈</span>)).toBe(true);
     expect(wrapper.contains(<span className="publisher">원타임즈</span>)).toBe(true);
-    expect(wrapper.contains(<span className="pubdate">2014-6-10 00:00:00</span>)).toBe(true);
+    expect(wrapper.contains(<span className="pubdate">2014.06.10</span>)).toBe(true);
     expect(wrapper.contains(<span className="owner">Yerin Kim</span>)).toBe(true);
     expect(wrapper.contains(<a href="https://search.daum.net/search?w=bookpage&bookId=1621016&q=%EC%97%B4%EB%91%90+%EB%8B%AC+%EC%A0%80%EC%9E%A5%EC%9D%8C%EC%8B%9D" target="_blank"><img src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1621016%3Ftimestamp%3D20190131080720" /></a>)).toBe(true);
   });
@@ -49,6 +49,7 @@ describe('<BookList />', () => {
     wrapper.instance().handleWishBook = handleWishBook;
 
     const wishButton = wrapper.find('.wish-button');
+
     wishButton.simulate('click');
 
     await expect(wrapper.instance().handleWishBook).toHaveBeenCalled();
@@ -64,7 +65,7 @@ describe('<BookList />', () => {
 
     expect(mock).toHaveBeenCalled();
   });
- 
+
   it('renders input text change', () => {
     const inputText = wrapper.find('input[type="text"]');
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getDateFormat from '../../utils';
+import { getDateFormatOfChat } from '../../utils';
 
 export default class ChatRoom extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ export default class ChatRoom extends Component {
             <p className='username'>{item.author.name}</p>
             <p className='text'>{item.message}</p>
           </div>
-          <span className='time'>{getDateFormat(item.created_at)}</span>
+          <span className='time'>{getDateFormatOfChat(item.created_at)}</span>
         </li>
       );
     });

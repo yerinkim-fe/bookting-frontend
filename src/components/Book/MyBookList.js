@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
+import { getDateFormat } from '../../utils';
 import './Book.scss';
 import addBook from '../../images/btn-add-book.png';
 
@@ -75,7 +76,7 @@ export default class MyBook extends Component {
               {item.publisher}
             </span>
             <span className='pubdate'>
-              {item.pubdate}
+              {getDateFormat(item.pubdate)}
             </span>
           </div>
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
-import axios from 'axios';
+import axiosInstance from '../../api';
 import Modal from '../Modal/Modal';
 import { getJwt } from '../../helpers';
+import { getDateFormat } from '../../utils';
 import './Book.scss';
 import iconSearch from '../../images/icon-search.png';
 
@@ -55,7 +56,7 @@ export default class BookList extends Component {
     const { books } = this.props;
 
     const selectedBook = books[index].lib_id;
-    const result = await axios.post(`/api/books/wish`, {
+    const result = await axiosInstance.post(`/api/books/wish`, {
       selectedBook
     }, {
       headers: { 'authorization': getJwt() }
@@ -109,7 +110,7 @@ export default class BookList extends Component {
               {item.publisher}
             </span>
             <span className='pubdate'>
-              {item.pubdate}
+              {getDateFormat(item.pubdate)}
             </span>
             <span className='owner'>
               {item.owner.name}
@@ -117,7 +118,7 @@ export default class BookList extends Component {
           </div>
 
           {
-            !item.status &&
+            ((localStorage.getItem('id') !== item.owner._id) && !item.status) &&
             <div className='buttons'>
               <button type='button' className='wish-button' onClick={() => this.handleWishBook(index)}>담기</button>
             </div>

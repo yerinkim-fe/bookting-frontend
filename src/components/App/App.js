@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Login from './Login';
+import Login from '../Login/Login';
 import Header from './Header';
-import BookList from './Book/BookList';
-import MyBookList from './Book/MyBookList';
-import MyBookNew from './Book/MyBookNew';
-import WishList from './Book/WishList';
-import ChatList from './Chat/ChatList';
-import ChatRoom from './Chat/ChatRoom';
+import BookList from '../Book/BookList';
+import MyBookList from '../Book/MyBookList';
+import MyBookNew from '../Book/MyBookNew';
+import WishList from '../Book/WishList';
+import ChatList from '../Chat/ChatList';
+import ChatRoom from '../Chat/ChatRoom';
+import AuthComponent from '../Auth/AuthComponent';
 import './App.scss';
-import AuthComponent from './AuthComponent';
 
 class App extends Component {
   render() {

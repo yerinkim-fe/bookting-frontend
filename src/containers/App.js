@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import App from '../components/App';
-import axios from 'axios';
+import App from '../components/App/App';
+import axiosInstance from '../api';
 import {
   allBookDataLoad,
   bookDataLoad,
@@ -35,19 +35,19 @@ const mapDispatchToProps = dispatch => {
 
   return {
     async onAllBookDataLoad(page = 0, isNew = false, query = '') {
-      const results = await axios.get(`/api/books?query=${query}&page=${page}`);
+      const results = await axiosInstance.get(`/api/books?query=${query}&page=${page}`);
       dispatch(allBookDataLoad(results.data.books, results.data.isEnd, isNew));
     },
     async onMyBookDataLoad(page = 0, user_id, isNew = false) {
-      const results = await axios.get(`/api/books/${user_id}?page=${page}`);
+      const results = await axiosInstance.get(`/api/books/${user_id}?page=${page}`);
       dispatch(bookDataLoad(results.data.books, results.data.isEnd, isNew));
     },
     async onWishBookDataLoad(page = 0, user_id, isNew = false) {
-      const results = await axios.get(`/api/books/wish/${user_id}?page=${page}`);
+      const results = await axiosInstance.get(`/api/books/wish/${user_id}?page=${page}`);
       dispatch(wishDataLoad(results.data.books, results.data.isEnd, isNew));
     },
     async onRemoveWish(selectedBook, wishIndex, bookIndex, user_id) {
-      const res = await axios.delete(`/api/books/wish/${user_id}`, {
+      const res = await axiosInstance.delete(`/api/books/wish/${user_id}`, {
         data: { selectedBook }
       });
 
@@ -56,7 +56,7 @@ const mapDispatchToProps = dispatch => {
       }
     },
     async onUpdateBook(selectedBook, index, user_id) {
-      const res = await axios.put(`/api/books/${user_id}`, {
+      const res = await axiosInstance.put(`/api/books/${user_id}`, {
         selectedBook
       });
 
@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => {
       }
     },
     async onRemoveBook(selectedBook, index, user_id) {
-      const res = await axios.delete(`/api/books/${user_id}`, {
+      const res = await axiosInstance.delete(`/api/books/${user_id}`, {
         data: { selectedBook }
       });
 
@@ -74,17 +74,17 @@ const mapDispatchToProps = dispatch => {
       }
     },
     async onMyChatListLoad(user_id) {
-      const res = await axios.get(`/api/chats/${user_id}/list`);
+      const res = await axiosInstance.get(`/api/chats/${user_id}/list`);
       dispatch(myChatListLoad(res.data.chats));
     },
     async onChatDataLoad(user_id, chat_id) {
       socket.emit('requestChat', chat_id);
 
-      const res = await axios.get(`/api/chats/${chat_id}?user_id=${user_id}`);
+      const res = await axiosInstance.get(`/api/chats/${chat_id}?user_id=${user_id}`);
       dispatch(chatDataLoad(res.data.chats, res.data.user));
     },
     async onSendMessage(message, author, chat_id) {
-      const res = await axios.post(`/api/chats/message/${chat_id}`, {
+      const res = await axiosInstance.post(`/api/chats/message/${chat_id}`, {
         author,
         message
       });
