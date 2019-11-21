@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import axiosInstance from '../../api';
-import Modal from '../Modal/Modal';
 import { getJwt } from '../../helpers';
-import { getDateFormat } from '../../utils';
+import BookItem from './BookItem';
+import Modal from '../Modal/Modal';
 import './Book.scss';
 import iconSearch from '../../images/icon-search.png';
 
@@ -90,43 +90,6 @@ export default class BookList extends Component {
   render() {
     const { books } = this.props;
 
-    const bookList = books.map((item, index) => {
-      const authors = item.authors.join(', ');
-
-      return (
-        <li key={index}>
-          <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
-          <div className='info'>
-            {
-              item.status ?
-              <div className='status-on'>대여중</div> :
-              <div className='status-off'>대여가능</div>
-            }
-            <span className='title'>{item.title}</span>
-            <span className='authors'>
-              {authors}
-            </span>
-            <span className='publisher'>
-              {item.publisher}
-            </span>
-            <span className='pubdate'>
-              {getDateFormat(item.pubdate)}
-            </span>
-            <span className='owner'>
-              {item.owner.name}
-            </span>
-          </div>
-
-          {
-            ((localStorage.getItem('id') !== item.owner._id) && !item.status) &&
-            <div className='buttons'>
-              <button type='button' className='wish-button' onClick={() => this.handleWishBook(index)}>담기</button>
-            </div>
-          }
-        </li>
-      );
-    });
-
     return (
       <div className='container'>
         <div className='inner'>
@@ -136,9 +99,13 @@ export default class BookList extends Component {
           </div>
 
           {
-            bookList.length > 0 ?
+            books.length > 0 ?
             <ul className='book-list'>
-              {bookList}
+              <BookItem
+                type='all'
+                books={books}
+                handleWishBook={this.handleWishBook}
+              />
             </ul> :
             <p className='no-data'>데이터가 없습니다.</p>
           }

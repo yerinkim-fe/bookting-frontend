@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { getDateFormat } from '../../utils';
+import BookItem from './BookItem';
 import './Book.scss';
 import addBook from '../../images/btn-add-book.png';
 
@@ -61,48 +61,20 @@ export default class MyBook extends Component {
   render() {
     const { books, match } = this.props;
 
-    const bookList = books.map((item, index) => {
-      const authors = item.authors.join(', ');
-
-      return (
-        <li key={index}>
-          <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
-          <div className='info'>
-            <span className='title'>{item.title}</span>
-            <span className='authors'>
-              {authors}
-            </span>
-            <span className='publisher'>
-              {item.publisher}
-            </span>
-            <span className='pubdate'>
-              {getDateFormat(item.pubdate)}
-            </span>
-          </div>
-
-          <div className='buttons'>
-            {
-              item.status ?
-              <button type='button' className='toggle-button-on' onClick={() => this.handleUpdateBook(index)}>대여중</button>
-              :
-              <button type='button' className='toggle-button-off' onClick={() => this.handleUpdateBook(index)}>대여가능</button>
-            }
-
-            <button type='button' onClick={() => this.handleRemoveBook(index)}>삭제</button>
-          </div>
-        </li>
-      );
-    });
-
     return (
       <div className='container'>
         <h2>내서재</h2>
 
         <div className='inner'>
           {
-            bookList.length > 0 ?
+            books.length > 0 ?
             <ul className='book-list'>
-              {bookList}
+              <BookItem
+                type='my'
+                books={books}
+                handleUpdateBook={this.handleUpdateBook}
+                handleRemoveBook={this.handleRemoveBook}
+              />
             </ul> :
             <p className='no-data'>데이터가 없습니다.</p>
           }

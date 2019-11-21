@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import axiosInstance from '../../api';
-import { getDateFormat } from '../../utils';
+import BookItem from './BookItem';
 import './Book.scss';
 
 export default class WishList extends Component {
@@ -71,41 +71,21 @@ export default class WishList extends Component {
 
     const wishList = wishes.map((wishItem, wishIndex) => {
 
-      const bookList = wishItem.book.map((item, bookIndex) => {
-        const authors = item.authors.join(', ');
-
-        return (
-          <li key={bookIndex}>
-            <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
-            <div className='info'>
-              <span className='title'>{item.title}</span>
-              <span className='authors'>
-                {authors}
-              </span>
-              <span className='publisher'>
-                {item.publisher}
-              </span>
-              <span className='pubdate'>
-                {getDateFormat(item.pubdate)}
-              </span>
-            </div>
-
-            <div className='buttons'>
-              <button type='button' onClick={() => this.handleRemoveWish(wishItem.wishId, wishIndex, bookIndex)}>삭제</button>
-            </div>
-          </li>
-        );
-      });
-
       return (
-        bookList.length !== 0 ?
+        wishItem.book.length !== 0 ?
         <li key={wishIndex}>
           <div className='owner'>
             <p className='owner-name'>{wishItem.owner.name}</p>
             <button type='button' onClick={() => this.handleChat(wishItem.owner._id)}>채팅하기</button>
           </div>
           <ul className='book-list'>
-            {bookList}
+            <BookItem
+              type='wish'
+              books={wishItem.book}
+              wishItem={wishItem}
+              wishIndex={wishIndex}
+              handleRemoveWish={this.handleRemoveWish}
+            />
           </ul>
         </li>
         : null

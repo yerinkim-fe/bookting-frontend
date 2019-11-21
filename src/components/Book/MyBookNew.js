@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import axiosInstance from '../../api';
+import BookItem from './BookItem';
 import Modal from '../Modal/Modal';
-import { getDateFormat } from '../../utils';
 import './Book.scss';
 import iconSearch from '../../images/icon-search.png';
 
@@ -103,31 +103,6 @@ export default class MyBookNew extends Component {
     const { match } = this.props;
     const { books } = this.state;
 
-    const bookList = books.map((item, index) => {
-      const authors = item.authors.join(', ');
-
-      return (
-        <li key={index}>
-          <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
-          <div className='info'>
-            <span className='title'>{item.title}</span>
-            <span className='authors'>
-              {authors}
-            </span>
-            <span className='publisher'>
-              {item.publisher}
-            </span>
-            <span className='pubdate'>
-              {getDateFormat(item.pubdate)}
-            </span>
-          </div>
-          <div className='buttons'>
-            <button type='button' onClick={() => this.handleAddBook(index)}>등록</button>
-          </div>
-        </li>
-      );
-    });
-
     return (
       <div className='container'>
         <h2>도서등록</h2>
@@ -140,9 +115,13 @@ export default class MyBookNew extends Component {
           </div>
 
           {
-            bookList.length > 0 ?
+            books.length > 0 ?
             <ul className='book-list'>
-              {bookList}
+              <BookItem
+                type='new'
+                books={books}
+                handleAddBook={this.handleAddBook}
+              />
             </ul> :
             <p className='no-data'>데이터가 없습니다.</p>
           }

@@ -26,6 +26,6 @@ export function getDateFormatOfChat(target) {
 }
 
 export function getDateFormat(target) {
-  const date = new Date(target);
+  const date = new Date(target.replace(/-/g, "/"));
   return format(date, "yyyy.MM.dd", OPTS);
 }
