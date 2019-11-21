@@ -13,9 +13,14 @@ const BookItem = props => {
         <a href={item.url} target='_blank'><img src={item.thumbnail} /></a>
         <div className='info'>
           {
-            (type === 'all' && item.status) ?
-            <div className='status-on'>대여중</div> :
-            <div className='status-off'>대여가능</div>
+            type === 'all' &&
+            <>
+              {
+                item.status ?
+                <div className='status-on'>대여중</div> :
+                <div className='status-off'>대여가능</div>
+              }
+            </>
           }
           <span className='title'>{item.title}</span>
           <span className='authors'>
@@ -25,16 +30,14 @@ const BookItem = props => {
             {item.publisher}
           </span>
           <span className='pubdate'>
-            {/* {item.pubdate} */}
             {getDateFormat(item.pubdate)}
           </span>
 
           {
-            (type === 'all') ?
+            type === 'all' &&
             <span className='owner'>
               {item.owner.name}
             </span>
-            : null
           }
         </div>
 
@@ -46,7 +49,7 @@ const BookItem = props => {
         }
 
         {
-          (type === 'my') ?
+          type === 'my' &&
           <div className='buttons'>
             {
               item.status ?
@@ -57,23 +60,20 @@ const BookItem = props => {
 
             <button type='button' onClick={() => handleRemoveBook(index)}>삭제</button>
           </div>
-          : null
         }
 
         {
-          (type === 'new') ?
+          type === 'new' &&
           <div className='buttons'>
             <button type='button' onClick={() => handleAddBook(index)}>등록</button>
           </div>
-          : null
         }
 
         {
-          (type === 'wish') ?
+          type === 'wish' &&
           <div className='buttons'>
             <button type='button' onClick={() => handleRemoveWish(wishItem.wishId, wishIndex, index)}>삭제</button>
           </div>
-          : null
         }
       </li>
     );
