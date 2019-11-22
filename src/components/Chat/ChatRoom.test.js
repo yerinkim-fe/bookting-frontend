@@ -37,20 +37,19 @@ describe('<ChatRoom />', () => {
   it('renders li items', () => {
     expect(wrapper.contains(<p className="username">Yerin Kim</p>)).toBe(true);
     expect(wrapper.contains(<p className="text">test</p>)).toBe(true);
-    expect(wrapper.contains(<span className="time">19년 10월 23일</span>)).toBe(true);  
+    expect(wrapper.contains(<span className="time">19년 10월 23일</span>)).toBe(true);
   });
 
   it('renders handleSend on search button click', () => {
-    const mock = jest.fn();
-    wrapper.instance().handleSend = mock;
+    wrapper.instance().handleSend = jest.fn();
     wrapper.instance().forceUpdate();
 
     const searchButton = wrapper.find('.send-button');
     searchButton.simulate('click');
 
-    expect(mock).toHaveBeenCalled();
+    expect(wrapper.instance().handleSend).toHaveBeenCalled();
   });
- 
+
   it('renders input text change', () => {
     const inputText = wrapper.find('input[type="text"]');
 
