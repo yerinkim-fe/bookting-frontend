@@ -14,28 +14,29 @@ class AuthComponent extends Component {
 
   async componentDidMount() {
     const jwt = getJwt();
+
     if (jwt === 'Bearer null') {
       this.props.history.push('/login');
       this.setState({
         user: null
       });
-
       return;
     } else {
       try {
-        const res = await axiosInstance.get('/api/auth/getUser', {
-          headers: { 'authorization': getJwt() }
-        });
-
-        this.setState({
-          user: res.data
-        });
+        this.props.onGetUser();
       } catch (err) {
-        console.log('error');
         localStorage.removeItem('jwt');
         localStorage.removeItem('id');
         this.props.history.push('/login');
       }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== prevProps.user) {
+      this.setState({
+        user: this.props.user
+      });
     }
   }
 

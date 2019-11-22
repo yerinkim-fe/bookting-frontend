@@ -14,6 +14,8 @@ import './App.scss';
 class App extends Component {
   render() {
     const {
+      onGetUser,
+      currUser,
       onAllBookDataLoad,
       onMyBookDataLoad,
       onWishBookDataLoad,
@@ -27,8 +29,7 @@ class App extends Component {
       onChatDataLoad,
       onSendMessage,
       chatList,
-      messages,
-      user
+      messages
     } = this.props;
 
     return (
@@ -39,7 +40,10 @@ class App extends Component {
               return <Redirect to='/books' />;
             }}
           />
-          <AuthComponent>
+          <AuthComponent
+            onGetUser={onGetUser}
+            user={currUser}
+          >
             <Header />
             <Route
               exact path='/books'
@@ -103,7 +107,7 @@ class App extends Component {
                   onChatDataLoad={onChatDataLoad}
                   onSendMessage={onSendMessage}
                   messages={messages}
-                  user={user}
+                  user={currUser}
                 />
               }}
             />

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axiosInstance from '../../api';
+import { getJwt } from '../../helpers';
 import { getDateFormatOfChat } from '../../utils';
 
 export default class ChatRoom extends Component {
@@ -20,10 +22,11 @@ export default class ChatRoom extends Component {
   };
 
 
-  componentDidMount() {
+  async componentDidMount() {
     this.scrollToBottom();
-    const { onChatDataLoad, match } = this.props;
-    onChatDataLoad(this.userId, match.params.chat_id);
+    const { onChatDataLoad, user, match } = this.props;
+
+    onChatDataLoad(user, match.params.chat_id);
   }
 
   componentDidUpdate(prevProps) {
@@ -46,11 +49,11 @@ export default class ChatRoom extends Component {
   }
 
   handleSend = () => {
-    const { onSendMessage, match } = this.props;
+    const { onSendMessage, user, match } = this.props;
 
     if (!this.state.value) return;
 
-    onSendMessage(this.state.value, this.userId, match.params.chat_id);
+    onSendMessage(this.state.value, user, match.params.chat_id);
     this.setState({
       value: ''
     });

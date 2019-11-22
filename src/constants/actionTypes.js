@@ -1,3 +1,4 @@
+export const GET_USER = 'GET_USER';
 export const ALL_BOOK_DATA_LOAD = 'ALL_BOOK_DATA_LOAD';
 export const BOOK_DATA_LOAD = 'BOOK_DATA_LOAD';
 export const WISH_DATA_LOAD = 'WISH_DATA_LOAD';
