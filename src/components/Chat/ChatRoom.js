@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axiosInstance from '../../api';
-import { getJwt } from '../../helpers';
 import { getDateFormatOfChat } from '../../utils';
 
 export default class ChatRoom extends Component {

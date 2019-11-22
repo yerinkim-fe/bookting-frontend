@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axiosInstance from '../../api';
 import { withRouter } from 'react-router-dom';
 import { getJwt } from '../../helpers';
+import './Auth.scss';
 
 class AuthComponent extends Component {
   constructor(props) {
@@ -44,9 +44,7 @@ class AuthComponent extends Component {
     const { user } = this.state;
     if (user === undefined) {
       return (
-        <div>
-          Loading...
-        </div>
+        <div className='loading'></div>
       );
     }
 
