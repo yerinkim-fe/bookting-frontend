@@ -1,0 +1,30 @@
+$primary-color: #1c77e4;
+$bg-color1: #fafafa;
+$bg-color2: #fff;
+$bg-color3: #c7c7c7;
+$bg-color4: #e3f0ff;
+$bg-color5: #ddd;
+
+$bd-color1: #f0f0f0;
+$bd-color2: #888;
+$bd-color3: #9aa0a7;
+
+$font-color1: #111;
+$font-color2: #666;
+$font-color3: #a3a3a3;
+$font-color4: #d8d8d8;
+$font-color5: #888;
+$font-color6: #8B8C95;
+$font-color7: #fff;
+$font-color8: #333;
+$font-color9: #D2D2D4;
+$font-color10: #ddd;
+$font-color11 : #322c64;
+
+%btn-shared {
+  padding: 5px 10px;
+  background: $primary-color;
+  border-radius: 10px;
+  color: $font-color7;
+  font-size: 12px;
+}

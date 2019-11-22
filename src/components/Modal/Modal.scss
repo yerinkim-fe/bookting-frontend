@@ -1,3 +1,5 @@
+@import '../App/base.scss';
+
 .modal {
   position: fixed;
   z-index: 1;
@@ -9,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 
   .wrap {
-    background: #fff;
+    background: $bg-color2;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,15 +24,15 @@
 
     .message {
       text-align: center;
-      color: #111;
+      color: $font-color1;
       margin: 60px 0 20px;
     }
 
     button {
       padding: 5px 10px;
-      background: #1c77e4;
+      background: $primary-color;
       border-radius: 10px;
-      color: #fff;
+      color: $font-color1;
       font-size: 12px;
     }
   }

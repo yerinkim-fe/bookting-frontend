@@ -1,3 +1,5 @@
+@import '../App/base.scss';
+
 .chat-list {
   li {
     position: relative;
@@ -22,13 +24,13 @@
       .username {
         font-size: 16px;
         font-weight: bold;
-        color: #111;
+        color: $font-color1;
       }
 
       .last-msg {
         padding-top: 5px;
         font-size: 14px;
-        color: #666;
+        color: $font-color2;
         display: table;
         table-layout: fixed;
         width: 90%;
@@ -47,7 +49,7 @@
       right: 20px;
       top: 20px;
       font-size: 14px;
-      color: #d8d8d8;
+      color: $font-color4;
     }
   }
 }
@@ -57,7 +59,7 @@
   top: 23px;
   left: 20px;
   font-size: 18px;
-  color: #8B8C95;
+  color: $font-color6;
   text-decoration: none;
 }
 
@@ -71,7 +73,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 10px 10px 0 10px;
-  background: #fff;
+  background: $bg-color2;
 
   li {
     position: relative;
@@ -114,14 +116,14 @@
         padding-left: 50px;
 
         .text {
-          background: #e3f0ff;
+          background: $bg-color4;
 
           &:after {
             content: '';
             position: absolute;
             top: 0px;
             left: -7px;
-            border-right: 15px solid #e3f0ff;
+            border-right: 15px solid $bg-color4;
             border-bottom: 13px solid transparent;
           }
         }
@@ -144,7 +146,7 @@
       .username {
         font-size: 16px;
         font-weight: bold;
-        color: #111;
+        color: $font-color1;
         margin-bottom: 3px;
       }
 
@@ -155,7 +157,7 @@
         margin: 0;
         border-radius: 5px;
         word-break: break-all;
-        color: #333;
+        color: $font-color8;
         font-size: 14px;
       }
     }
@@ -165,7 +167,7 @@
       margin: 0;
       padding: 5px;
       font-size: 11px;
-      color: #D2D2D4;
+      color: $font-color9;
     }
   }
 }
@@ -184,18 +186,18 @@
     padding: 15px;
     padding-right: 60px;
     font-size: 14px;
-    color: #ddd;
+    color: $font-color10;
   }
 
   .send-button {
     padding: 10px 15px;
-    background: #ddd;
+    background: $bg-color5;
     border: none;
     border-radius: 0;
     width: 80px;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
+    color: $font-color7;
     margin-left: 0px;
   }
 }

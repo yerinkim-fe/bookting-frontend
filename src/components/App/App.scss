@@ -1,3 +1,5 @@
+@import './base.scss';
+
 body {
   margin: auto;
 }
@@ -33,17 +35,9 @@ button {
 
   padding: 5px 10px;
   margin-left: 5px;
-  background: #1c77e4;
+  background: $primary-color;
   border-radius: 10px;
-  color: #fff;
-  font-size: 12px;
-}
-
-%btn-shared {
-  padding: 5px 10px;
-  background: #1c77e4;
-  border-radius: 10px;
-  color: #fff;
+  color: $bg-color2;
   font-size: 12px;
 }
 

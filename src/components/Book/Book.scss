@@ -1,3 +1,5 @@
+@import '../App/base.scss';
+
 .container {
   position: relative;
 }
@@ -32,12 +34,12 @@
 h2 {
   margin: 0 0 10px 0;
   padding: 15px 0;
-  background: #fafafa;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
+  background: $bg-color1;
+  border-top: 1px solid $bd-color1;
+  border-bottom: 1px solid $bd-color1;
   text-align: center;
   font-size: 18px;
-  color: #111;
+  color: $font-color1;
 }
 
 .inner {
@@ -54,9 +56,9 @@ h2 {
     padding: 10px 20px;
     padding-right: 50px;
     border-radius: 20px;
-    border: 1px solid #888;
+    border: 1px solid $bd-color2;
     font-size: 14px;
-    color: #666;
+    color: $font-color2;
   }
 
   button {
@@ -92,17 +94,17 @@ h2 {
 
       .status-off {
         display: inline-block;
-        border: 1px solid #1c77e4;
+        border: 1px solid $primary-color;
         padding: 2px 4px;
-        color: #1c77e4;
+        color: $primary-color;
         font-size: 11px;
         margin-bottom: 5px;
       }
       .status-on {
         display: inline-block;
-        border: 1px solid #9aa0a7;
+        border: 1px solid $bd-color3;
         padding: 2px 4px;
-        color: #a3a3a3;
+        color: $font-color3;
         font-size: 11px;
         margin-bottom: 5px;
       }
@@ -115,26 +117,26 @@ h2 {
 
         &.title {
           font-size: 16px;
-          color: #111;
+          color: $font-color1;
         }
 
         &.authors {
-          color: #a3a3a3;
+          color: $font-color3;
           margin-top: 15px;
         }
 
         &.publisher {
-          color: #a3a3a3;
+          color: $font-color3;
           margin-top: 5px;
         }
 
         &.pubdate {
-          color: #d8d8d8;
+          color: $font-color4;
           margin-top: 10px;
         }
 
         &.owner {
-          color: #888;
+          color: $font-color5;
           margin-top: 15px;
         }
       }
@@ -147,23 +149,14 @@ h2 {
     }
 
     .toggle-button-on {
-      // @extend %btn-shared;
-      padding: 5px 10px;
+      @extend %btn-shared;
       margin-left: 5px;
-      background: #c7c7c7;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 12px;
+      background: $bg-color3;
     }
 
     .toggle-button-off {
-      // @extend %btn-shared;
-      padding: 5px 10px;
+      @extend %btn-shared;
       margin-left: 5px;
-      background: #1c77e4;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 12px;
     }
   }
 }
@@ -180,7 +173,7 @@ h2 {
       &-name {
         font-size: 18px;
         font-weight: bold;
-        color: #1c77e4;
+        color: $primary-color;
       }
 
     }

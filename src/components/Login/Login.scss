@@ -1,3 +1,5 @@
+@import '../App/base.scss';
+
 .login {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   align-items: center;
 
   p {
-    color: #322c64;
+    color: $font-color11;
     font-size: 20px;
     text-align: center;
     margin-bottom: 30px;
