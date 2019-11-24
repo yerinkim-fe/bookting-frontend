@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import axiosInstance from '../../api';
 import { getJwt } from '../../helpers';
 import './Auth.scss';
 
@@ -20,23 +21,22 @@ class AuthComponent extends Component {
       this.setState({
         user: null
       });
+
       return;
     } else {
       try {
-        this.props.onGetUser();
+        const res = await axiosInstance.get('/api/auth/getUser', {
+          headers: { 'authorization': getJwt() }
+        });
+
+        this.setState({
+          user: res.data
+        });
       } catch (err) {
         localStorage.removeItem('jwt');
         localStorage.removeItem('id');
         this.props.history.push('/login');
       }
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.user !== prevProps.user) {
-      this.setState({
-        user: this.props.user
-      });
     }
   }
 

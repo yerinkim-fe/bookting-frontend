@@ -20,17 +20,10 @@ export default class ChatRoom extends Component {
   };
 
 
-  async componentDidMount() {
+  componentDidMount() {
     this.scrollToBottom();
-    const { onChatDataLoad, user, match } = this.props;
-
-    onChatDataLoad(user, match.params.chat_id);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.messages !== prevProps.messages) {
-      this.scrollToBottom();
-    }
+    const { onChatDataLoad, match } = this.props;
+    onChatDataLoad(this.userId, match.params.chat_id);
   }
 
   handleValueChange = e => {
@@ -47,11 +40,11 @@ export default class ChatRoom extends Component {
   }
 
   handleSend = () => {
-    const { onSendMessage, user, match } = this.props;
+    const { onSendMessage, match } = this.props;
 
     if (!this.state.value) return;
 
-    onSendMessage(this.state.value, user, match.params.chat_id);
+    onSendMessage(this.state.value, this.userId, match.params.chat_id);
     this.setState({
       value: ''
     });

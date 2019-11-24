@@ -1,10 +1,5 @@
 import * as types from "../constants/actionTypes";
 
-export const getUser = (user) => ({
-  type: types.GET_USER,
-  user
-});
-
 export const bookUpdateSuccess = (index) => ({
   type: types.BOOK_UPDATE_SUCCESS,
   index

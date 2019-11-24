@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import App from '../components/App/App';
 import axiosInstance from '../api';
-import { getJwt } from '../helpers';
 import {
-  getUser,
   allBookDataLoad,
   bookDataLoad,
   wishDataLoad,
@@ -18,7 +16,6 @@ import socket from '../socket';
 
 const mapStateToProps = state => {
   return {
-    currUser: state.user,
     allBookData: state.allBook.data,
     allBookIsEnd: state.allBook.isEnd,
     bookData: state.book.data,
@@ -26,6 +23,7 @@ const mapStateToProps = state => {
     wishData: state.wish.data,
     wishIsEnd: state.wish.isEnd,
     chatList: state.chatList,
+    user: state.chats.user,
     messages: state.chats.messages
   };
 };
@@ -36,12 +34,6 @@ const mapDispatchToProps = dispatch => {
   });
 
   return {
-    async onGetUser() {
-      const res = await axiosInstance.get('/api/auth/getUser', {
-        headers: { 'authorization': getJwt() }
-      });
-      dispatch(getUser(res.data.user));
-    },
     async onAllBookDataLoad(page = 0, isNew = false, query = '') {
       const results = await axiosInstance.get(`/api/books?query=${query}&page=${page}`);
       dispatch(allBookDataLoad(results.data.books, results.data.isEnd, isNew));
@@ -85,19 +77,19 @@ const mapDispatchToProps = dispatch => {
       const res = await axiosInstance.get(`/api/chats/${user_id}/list`);
       dispatch(myChatListLoad(res.data.chats));
     },
-    async onChatDataLoad(user, chat_id) {
+    async onChatDataLoad(user_id, chat_id) {
       socket.emit('requestChat', chat_id);
 
-      const res = await axiosInstance.get(`/api/chats/${chat_id}`);
-      dispatch(chatDataLoad(res.data.chats, user));
+      const res = await axiosInstance.get(`/api/chats/${chat_id}?user_id=${user_id}`);
+      dispatch(chatDataLoad(res.data.chats, res.data.user));
     },
     async onSendMessage(message, author, chat_id) {
-      socket.emit('sendMessage', message, author, chat_id);
-
-      await axiosInstance.post(`/api/chats/message/${chat_id}`, {
+      const res = await axiosInstance.post(`/api/chats/message/${chat_id}`, {
         author,
         message
       });
+
+      socket.emit('sendMessage', message, res.data.user, chat_id);
     }
   };
 };

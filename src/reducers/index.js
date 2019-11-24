@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import * as types from "../constants/actionTypes";
 
 const initialState = {
-  user: null,
   allBook: {
     data: [],
     isEnd: false
@@ -21,16 +20,6 @@ const initialState = {
     user: {}
   }
 };
-
-export function userReducer(state = initialState.user, action) {
-  switch(action.type) {
-    case types.GET_USER:
-      return action.user;
-
-    default:
-      return state;
-  }
-}
 
 export function allBookReducer(state = initialState.allBook, action) {
   switch(action.type) {
@@ -176,7 +165,6 @@ export function chatReducer(state = initialState.chats, action) {
 }
 
 export default combineReducers({
-  user: userReducer,
   allBook: allBookReducer,
   book: bookReducer,
   wish: wishReducer,
