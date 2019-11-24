@@ -26,6 +26,8 @@ export function getDateFormatOfChat(target) {
 }
 
 export function getDateFormat(target) {
-  const date = new Date(target.replace(/-/g, "/"));
-  return format(date, "yyyy.MM.dd", OPTS);
+  if (target !== 'Invalid Date Invalid Date') {
+    const date = new Date(target.replace(/-/g, "/"));
+    return format(date, "yyyy.MM.dd", OPTS);
+  }
 }
