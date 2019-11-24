@@ -81,12 +81,12 @@ h2 {
     position: relative;
     display: flex;
     align-items: flex-start;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid $bd-color4;
     padding: 20px 0;
 
     img {
       width: 100px;
-      border: 1px solid #ddd;
+      border: 1px solid $bd-color5;
     }
 
     .info {
@@ -179,7 +179,7 @@ h2 {
     }
 
     .book-list {
-      border-top: 1px solid #f0f0f0;
+      border-top: 1px solid $bd-color1;
     }
   }
 }

@@ -5,7 +5,7 @@
     position: relative;
     display: flex;
     align-items: flex-start;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid $bd-color4;
     padding: 20px;
 
     a {
@@ -91,14 +91,14 @@
         text-align: right;
 
         .text {
-          background: #f2f2f2;
+          background: $bg-color6;
 
           &:after {
             content: '';
             position: absolute;
             top: 0px;
             right: -7px;
-            border-left: 15px solid #f2f2f2;
+            border-left: 15px solid $bd-color4;
             border-bottom: 13px solid transparent;
           }
         }
@@ -178,7 +178,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  border: 1px solid #ddd;
+  border: 1px solid $bd-color5;
 
   input {
     box-sizing: border-box;
